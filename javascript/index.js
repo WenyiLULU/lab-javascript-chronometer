@@ -14,11 +14,15 @@ const milUniElement = document.getElementById('milUni');
 const splitsElement = document.getElementById('splits');
 
 function printTime() {
-  // ... your code goes here
+  let courrentTime = chronometer.split()
+  minDecElement.innerHTML = courrentTime[0];
+  minUniElement.innerHTML = courrentTime[1];
+  secDecElement.innerHTML = courrentTime[3];
+  secUniElement.innerHTML = courrentTime[4];
 }
 
 function printMinutes() {
-  // ... your code goes here
+  
 }
 
 function printSeconds() {
@@ -31,35 +35,67 @@ function printMilliseconds() {
 }
 
 function printSplit() {
-  // ... your code goes here
+  let newSplit = document.createElement("li");
+  newSplit.innerHTML = chronometer.split();
+  splitsElement.append(newSplit)
+
+
 }
 
 function clearSplits() {
-  // ... your code goes here
+  while (splitsElement.firstChild) {
+    splitsElement.removeChild(splitsElement.firstChild);
+  } 
 }
 
 function setStopBtn() {
-  // ... your code goes here
+  btnLeftElement.className = "btn stop";
+  btnLeftElement.innerHTML = "STOP";
 }
 
 function setSplitBtn() {
-  // ... your code goes here
+  btnRightElement.className = "btn split";
+  btnRightElement.innerHTML = "SPLIT";
 }
 
 function setStartBtn() {
-  // ... your code goes here
+  btnLeftElement.className = "btn start";
+  btnLeftElement.innerHTML = "START";
+  
 }
 
 function setResetBtn() {
-  // ... your code goes here
+  btnRightElement.className = "btn reset";
+  btnRightElement.innerHTML = "RESET";
 }
 
 // Start/Stop Button
 btnLeftElement.addEventListener('click', () => {
-  // ... your code goes here
+  switch (btnLeftElement.className) {
+  case 'btn start' :
+    setStopBtn();
+    chronometer.start(printTime);
+    setSplitBtn();
+    break;
+  case 'btn stop':
+    setStartBtn();
+    chronometer.stop();
+    setResetBtn();
+    break;
+  }
+  
 });
 
 // Reset/Split Button
 btnRightElement.addEventListener('click', () => {
-  // ... your code goes here
+  switch (btnRightElement.className) {
+    case 'btn reset' :
+      chronometer.reset();
+      printTime();
+      clearSplits();
+      break;
+    case 'btn split':
+      printSplit();
+      break;
+    }
 });
