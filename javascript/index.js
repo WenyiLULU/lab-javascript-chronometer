@@ -19,6 +19,8 @@ function printTime() {
   minUniElement.innerHTML = courrentTime[1];
   secDecElement.innerHTML = courrentTime[3];
   secUniElement.innerHTML = courrentTime[4];
+  milDecElement.innerHTML = courrentTime[6];
+  milUniElement.innerHTML = courrentTime[7];
 }
 
 function printMinutes() {
